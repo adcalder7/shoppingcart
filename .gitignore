@@ -4,6 +4,8 @@ src/test/*
 
 *.class
 *.log
+*.bsp
+*.bsp/*
 
 # sbt specific
 .cache/

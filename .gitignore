@@ -1,4 +1,5 @@
 .idea
+project/target
 project/target/*
 src/test/*
 

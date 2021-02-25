@@ -40,7 +40,7 @@ object TestData {
 
           val discountAmount = setPriceSum * discountPercent
 
-          Some(DiscountResult(0.17, cart.getTotal() - discountAmount))
+          Some(DiscountResult(discountPercent, cart.getTotal() - discountAmount))
         } else None
       }),
       Discount("15% off with 1000+ cart total", (cart:Cart) => {

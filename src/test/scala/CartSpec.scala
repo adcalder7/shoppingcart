@@ -1,6 +1,7 @@
 import library.Cart
 import org.scalatest._
 import matchers.should.Matchers._
+import org.apache.commons.math3.util.Precision
 import org.scalatest.flatspec.AnyFlatSpec
 
 class CartSpec extends AnyFlatSpec {
@@ -14,6 +15,10 @@ class CartSpec extends AnyFlatSpec {
     cart.addItem(TestData.table)
 
     assert(cart.getTotal() == 1600)
+    val discount = TestData.checkout.calculateDiscount(cart)
+    assert(discount.isDefined)
+    assert(discount.get.discount == 0.17)
+    assert(discount.get.price == 1328.00)
 
     TestData.checkout.submit(cart)
 
@@ -29,7 +34,10 @@ class CartSpec extends AnyFlatSpec {
     cart.addItem(TestData.chair4)
 
     assert(cart.getTotal() == 400.04)
-    assert(TestData.checkout.calculateDiscount(cart).get.discount == 0.2)
+    val discount = TestData.checkout.calculateDiscount(cart)
+    assert(discount.isDefined)
+    assert(discount.get.discount == 0.2)
+    assert(Precision.round(discount.get.price, 2) == 320.03)
 
     TestData.checkout.submit(cart)
 
@@ -45,7 +53,10 @@ class CartSpec extends AnyFlatSpec {
     cart.addItem(TestData.table)
 
     assert(cart.getTotal() == 1600)
-    assert(TestData.checkout.calculateDiscount(cart).get.discount == 0.17)
+    val discount = TestData.checkout.calculateDiscount(cart)
+    assert(discount.isDefined)
+    assert(discount.get.discount == 0.17)
+    assert(Precision.round(discount.get.price, 2) == 1328.00)
 
     TestData.checkout.submit(cart)
 
@@ -59,7 +70,10 @@ class CartSpec extends AnyFlatSpec {
     cart.addItem(TestData.couch1)
 
     assert(cart.getTotal() == 1499.98)
-    assert(TestData.checkout.calculateDiscount(cart).get.discount == 0.15)
+    val discount = TestData.checkout.calculateDiscount(cart)
+    assert(discount.isDefined)
+    assert(discount.get.discount == 0.15)
+    assert(Precision.round(discount.get.price, 2) == 1274.98)
 
     TestData.checkout.submit(cart)
 
@@ -73,7 +87,10 @@ class CartSpec extends AnyFlatSpec {
     cart.addItem(TestData.couch1)
 
     assert(cart.getTotal() == 1499.98)
-    assert(TestData.checkout.calculateDiscount(cart).get.discount == 0.15)
+    val discount = TestData.checkout.calculateDiscount(cart)
+    assert(discount.isDefined)
+    assert(discount.get.discount == 0.15)
+    assert(Precision.round(discount.get.price, 2) == 1274.98)
 
     TestData.checkout.submit(cart)
 

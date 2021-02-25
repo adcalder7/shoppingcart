@@ -14,7 +14,8 @@ object TestData {
 
         if (chairItems.isDefined && chairItems.get.size >= 4) {
           val discountPercent = 0.2
-          Some(DiscountResult(discountPercent, cart.getTotal() - (chairItems.get.size * discountPercent)))
+          // Can be optimize to pick the best item based on price
+          Some(DiscountResult(discountPercent, cart.getTotal() - (chairItems.get.size * chair1.price * discountPercent)))
         } else None
       }),
       Discount("17% off per set", (cart:Cart) => {

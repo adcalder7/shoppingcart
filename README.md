@@ -1,4 +1,4 @@
-# DISCO Cart Assignment
+# Cart Assignment
 
 ### Run Instructions
 

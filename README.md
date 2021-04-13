@@ -2,4 +2,4 @@
 
 ### Run Instructions
 
-* sbt test
+* sbt test --
